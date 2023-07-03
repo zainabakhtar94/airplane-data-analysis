@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block body %}
+  <div>
+    <p class="lead">Flights by Tail Number {{tail_number}}</p>
+    <table class="table table-condensed table-striped">
+      <thead>
+        <th>Images</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+          {% for image in images['Images'] %}
+          <img src={{image}} style=width:24%>
+          {% endfor %}
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+        <table class="table table-condensed table-striped">
+      <thead>
+        <th>Serial Number</th>
+        <th>Manufacturer</th>
+        <th>Model</th>
+        <th>MFR Year</th>
+        <th>Owner</th>
+        <th>Owner State</th>
+        <th>Engine Manufacturer</th>
+        <th>Engine Model</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{descriptions['serial_number']}}</td>
+          <td>{{descriptions['manufacturer']}}</td>
+          <td>{{descriptions['model']}}</td>
+          <td>{{descriptions['mfr_year']}}</td>
+          <td>{{descriptions['owner']}}</td>
+          <td>{{descriptions['owner_state']}}</td>
+          <td>{{descriptions['engine_manufacturer']}}</td> 
+          <td>{{descriptions['engine_model']}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-condensed table-striped">
+      <thead>
+        <th>Carrier</th>
+        <th>Date</th>
+        <th>Flight Number</th>
+        <th>Origin</th>
+        <th>Destination</th>
+      </thead>
+      <tbody>
+        {% for flight in flights['Flights'] %}
+        <tr>
+          <td>{{flight['Carrier']}}</td>
+          <td>{{flight['FlightDate']}}</td>
+          <td><a href="/on_time_performance?Carrier={{flight['Carrier']}}&FlightDate={{flight['FlightDate']}}&FlightNum={{flight['FlightNum']}}">{{flight['FlightNum']}}</a></td>
+          <td>{{flight['Origin']}}</td>
+          <td>{{flight['Dest']}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block body %}
+  <div>
+    <p class="lead">Flights by Tail Number {{tail_number}}</p>
+    <table class="table table-condensed table-striped">
+      <thead>
+        <th>Carrier</th>
+        <th>Date</th>
+        <th>Flight Number</th>
+        <th>Origin</th>
+        <th>Destination</th>
+      </thead>
+      <tbody>
+        {% for flight in flights['Flights'] %}
+        <tr>
+          <td>{{flight['Carrier']}}</td>
+          <td>{{flight['FlightDate']}}</td>
+          <td><a href="/on_time_performance?Carrier={{flight['Carrier']}}&FlightDate={{flight['FlightDate']}}&FlightNum={{flight['FlightNum']}}">{{flight['FlightNum']}}</a></td>
+          <td>{{flight['Origin']}}</td>
+          <td>{{flight['Dest']}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
